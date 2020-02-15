@@ -7,6 +7,7 @@
 int main ()
 {
     pid_t pid;
+    int status;
 
     pid = fork();
     
@@ -18,8 +19,9 @@ int main ()
         execlp("/bin/ls", "ls", NULL);
     }
     else { // parent process
-        wait(NULL);
+        wait(&status);
         printf("child completed \n");
+        printf("child exit status: %d \n", status);
     }
 
     exit(0);
